@@ -50,6 +50,18 @@ public class LinkedList {
         //head = null;
     }
 
+    public void deleteByIndex(int index){
+        if(index==0){
+            head = head.next;
+        }
+
+        Node temp = head;
+        for(int i=0;i<index-1;i++){
+            temp = temp.next;
+        }
+        Node n = temp.next;
+        temp.next = n.next;
+    }
 
     public boolean search(int element){
 
