@@ -1,6 +1,22 @@
 package Array;
 
+// Ques - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
 public class BestTimeToBuyAndSellStock121 {
+
+    // TC- O (n)
+    public static int maxProfit1(int[] prices) {
+
+        int max =0;
+        int min = Integer.MAX_VALUE;
+        for(int start=0; start<prices.length; start++){
+            if( prices[start]<min )
+                min = prices[start];
+            else
+                max = Math.max(max, prices[start]-min);
+        }
+        return max;
+    }
 
     // TC - o(n^2)
     public static int maxProfit(int[] prices) {
