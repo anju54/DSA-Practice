@@ -2,7 +2,15 @@ package AugustChallenge;
 
 public class PowerOfFour {
 
-    public static boolean isPowerOfFour(int num) {
+    public static boolean isPowerOfFourUsingBitLogic(int num){
+
+        if ( ( num & (num-1) ) == 0 && num%3==1 )  // bit manipulation
+            return true;
+
+        return false;
+    }
+
+    public static boolean isPowerOfFour(int num) { // recursion
 
         if (num==0)
             return false;
@@ -17,8 +25,9 @@ public class PowerOfFour {
     }
 
     public static void main(String[] args) {
-        int num = 16;
-        System.out.println( isPowerOfFour(num));
+        int num = 0;
+
+        System.out.println( isPowerOfFourUsingBitLogic(num));
     }
 }
 
