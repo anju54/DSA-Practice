@@ -12,7 +12,8 @@ class Node {
 
     Node(int item) {
         data = item;
-        left = right;
+        left = null;
+        right = null;
     }
 }
 
@@ -38,7 +39,7 @@ public class BTreeTraverse {
                 if(temp.left!=null)
                     queue.add(temp.left);
 
-                if(temp.left!=null)
+                if(temp.right!=null)
                     queue.add(temp.right);
 
             }
