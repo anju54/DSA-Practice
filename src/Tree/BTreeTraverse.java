@@ -1,9 +1,6 @@
 package Tree;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 class Node {
 
@@ -28,7 +25,7 @@ public class BTreeTraverse {
             return;
         }else{
 
-            Queue<Node> queue = new LinkedList<Node>();
+            Queue<Node> queue = new LinkedList<>();
             queue.add(root);
 
             while (!queue.isEmpty()){
@@ -60,6 +57,29 @@ public class BTreeTraverse {
         preorder(root.right);
     }
 
+    public void preorderUsingIterative(Node root){
+
+        Stack<Node> stack = new Stack<>();
+
+        if(root==null)
+            return;
+
+        stack.push(root);
+
+        while (!stack.isEmpty()){
+
+            Node popped = stack.pop();
+
+            System.out.print(popped.data+ ", ");
+
+            if(popped.right!=null)
+                stack.push(popped.right);
+
+            if(popped.left!=null)
+                stack.push(popped.left);
+        }
+    }
+
     public static void main(String[] args) {
         BTreeTraverse tree = new BTreeTraverse();
 
@@ -74,7 +94,9 @@ public class BTreeTraverse {
         System.out.println("============Preorder============");
         tree.preorder(tree.root);
 
-        System.out.println("Level order traversal of binary tree is - ");
+        tree.preorderUsingIterative(tree.root);
+
+        System.out.println("\n\nLevel order traversal of binary tree is - ");
         tree.levelOrderTraversal(tree.root);
     }
 
