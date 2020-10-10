@@ -82,6 +82,70 @@ public class BTreeTraverse {
         }
     }
 
+    // Pre order using one stack
+    public void inorder(Node root){
+
+        Stack<Node> stack = new Stack<>();
+
+        if(root==null)
+            return;
+
+        Node p = root;
+
+        while ( p!=null || !stack.isEmpty()){
+
+            if(p!=null){
+                stack.push(p);
+                p = p.left;
+
+            }else if (p==null && !stack.isEmpty()){
+                Node popped = stack.pop();
+                System.out.print(popped.data + " ");
+                if(popped.right!=null)
+                    p = popped.right;
+            }else
+                break;
+        }
+    }
+
+    public void postorder(Node root){
+
+        Stack<Node> stack = new Stack<>();
+
+        if(root==null)
+            return;
+
+        Node p = root;
+
+        while (true){
+
+            if (p!=null){
+                stack.push(p);
+                p = p.left;
+            }
+            else{
+                if(stack.isEmpty())
+                    break;
+                else{
+                    if(stack.peek().right==null){ // to check if right is processed
+                        p = stack.pop();
+                        System.out.print(p.data +" ");
+
+                        // to check popped element is in the right side and its processed
+                        while (!stack.isEmpty() && stack.peek().right == p){
+                            System.out.print(stack.peek().data+ " ");
+                            p = stack.pop();
+                        }
+                    }
+                }
+                if(!stack.isEmpty())
+                    p = stack.peek().right;
+                else
+                    p = null;
+            }
+        }
+    }
+
     public List<List<Integer>>  verticalOrderTraversal(Node root){
 
         List<List<Integer>> result = new ArrayList<>();
@@ -158,6 +222,11 @@ public class BTreeTraverse {
             }
             System.out.println();
         }
+        System.out.println("\n\nPost order using stack");
+       tree.postorder(tree.root);
+
+        System.out.println("\n\nIn order using stack");
+        tree.inorder(tree.root);
     }
 
 }
