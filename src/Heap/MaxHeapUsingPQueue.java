@@ -16,6 +16,8 @@ public class MaxHeapUsingPQueue {
         pQueue.add(20);
         pQueue.add(400);
 
+        System.out.println(pQueue);
+
         System.out.println("Head value using peek function:" +
                 pQueue.peek());
 
