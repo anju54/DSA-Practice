@@ -8,7 +8,7 @@ public class MoveZeroToEnd {
         arr = shiftZeroToEnd(arr);
 
         for(int j=0;j<arr.length;j++){
-            System.out.println(arr[j]);
+            System.out.print(arr[j] + " ");
         }
     }
 
@@ -27,6 +27,37 @@ public class MoveZeroToEnd {
         while (count<len){
             arr[count++] = 0;
         }
+        return arr;
+    }
+
+    // here output order is not same
+    // using two pointer technique
+    public static int[] moveZeroes(int []arr){
+
+        if (arr.length == 0)
+            return arr;
+        int left = 0;
+        int right = arr.length -1;
+
+        while (left<right){
+            while (arr[left] !=0)
+                left++;
+
+            while (arr[right] == 0)
+                right--;
+
+            if (left<right){
+                int temp = arr[right];
+                arr[right] = arr[left];
+                arr[left] = temp;
+                left++;
+                right--;
+            }
+        }
+        // to print the output
+        for (int i = 0; i < arr.length; i++)
+            System.out.print(arr[i] + " ");
+
         return arr;
     }
 }
